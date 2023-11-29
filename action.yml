@@ -46,6 +46,12 @@ inputs:
     description: "The Github access token with access to the repository for comment URL. It is recommended you put this token under secrets."
     required: false
     default: ${{ github.token }}
+  github_client_id:
+    description: ""
+    required: false
+  github_client_secret:
+    description: ""
+    required: false
 outputs:
   workflow_id:
     description: The ID of the workflow that was triggered by this action

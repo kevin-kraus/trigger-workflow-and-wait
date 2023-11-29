@@ -55,11 +55,18 @@ validate_args() {
 
   if [ -z "${INPUT_GITHUB_TOKEN}" ]
   then
-    echo "Error: Github token is required. You can head over settings and"
-    echo "under developer, you can create a personal access tokens. The"
-    echo "token requires repo access."
-    usage_docs
-    exit 1
+    if [ -z "${INPUT_GITHUB_CLIENT_ID}" ] && [ -z "${INPUT_GITHUB_CLIENT_SECRET}" ]
+    then
+      // TODO: IMPLEMENT
+    else
+      echo "Error: Some form of authentification is required."
+      echo "You can either use GitHub App Credentials (Client-ID & Secret) or a"
+      echo "Github token is required. You can head over settings and"
+      echo "under developer, you can create a personal access tokens. The"
+      echo "token requires repo access."
+      usage_docs
+      exit 1
+    fi
   fi
 
   if [ -z "${INPUT_WORKFLOW_FILE_NAME}" ]
@@ -107,6 +114,10 @@ api() {
       exit 1
     fi
   fi
+}
+
+get_bearer_token() {
+  
 }
 
 lets_wait() {
